@@ -53,3 +53,5 @@ GUI Swing e testes antigos fora da suíte nova; regras da simulação são fict�
 Use o [roteiro de apresentação](docs/APRESENTACAO.md) e confira os [PRs reais](docs/PUBLICACAO.md). As branches representam organização atual, sem datas retroativas ou revisões fictícias.
 
 [Contribuir](CONTRIBUTING.md) · [Direitos e créditos](DIREITOS_E_CREDITOS.md) · [Referências](docs/REFERENCIAS.md) · [Mudanças](CHANGELOG.md)
+
+**CI confirmada:** [testes aprovados](https://github.com/luigiscofano/usp-mac0321-poo/actions/runs/41227685943). Consulte o registro de [validação remota](docs/validacao-remota.json).
