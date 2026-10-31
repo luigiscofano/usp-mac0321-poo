@@ -1,5 +1,13 @@
 # src/poo/colecoes
 
+[Início](../../../README.md) · [Como executar](../../../README.md#como-executar) · [Aprendizagem](../../../README.md#o-que-desenvolvi-e-aprendi) · [Estado atual](../../../README.md#estado-atual)
+
+> **Nesta área:** multiconjunto por frequência, com igualdade por multiplicidades.
+
+[Início](../../../README.md) · [Como executar](../../../README.md#como-executar) · [Aprendizagem](../../../README.md#o-que-desenvolvi-e-aprendi) · [Estado atual](../../../README.md#estado-atual)
+
+> **Nesta área:** multiconjunto por frequência, com igualdade por multiplicidades.
+
 Multiconjunto com igualdade por frequências.
 
 Conteúdo principal: `Multiconjunto.java`
@@ -7,3 +15,11 @@ Conteúdo principal: `Multiconjunto.java`
 Leia o [guia principal](../../../README.md), os [contratos](../../../docs/ARQUITETURA.md) e a [procedência](../../../docs/PROCEDENCIA.md). Execute conforme [INSTALACAO.md](../../../docs/INSTALACAO.md).
 
 Para estudar: identifique entrada e saída, acompanhe um exemplo pequeno e investigue um caso de fronteira. As conclusões e limites estão em [VALIDACAO.md](../../../docs/VALIDACAO.md).
+
+---
+
+**Projeto:** [MAC0321 · Eventos, estados, CSV e coleções](../../../README.md). Consulte a raiz para os requisitos e o primeiro comando; este guia aprofunda a área `src/poo/colecoes/`.
+
+---
+
+**Projeto:** [MAC0321 · Eventos, estados, CSV e coleções](../../../README.md). Consulte a raiz para os requisitos e o primeiro comando; este guia aprofunda a área `src/poo/colecoes/`.

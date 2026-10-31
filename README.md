@@ -1,59 +1,139 @@
-<p align="center"><img src="assets/capa.svg" alt="MAC0321 · Laboratório de Programação Orientada a Objetos" width="100%"></p>
+# MAC0321 · Eventos, estados, CSV e coleções
 
-# MAC0321 · Laboratório de Programação Orientada a Objetos
+> Estudos independentes de orientação a objetos em Java: simulação por eventos, estados de lançamentos, persistência CSV e multiconjuntos, com acervo acadêmico e testes.
 
-**Eventos, estado e persistência: contratos explicáveis e verificáveis.**
+![Visão geral de MAC0321 · Eventos, estados, CSV e coleções](assets/capa.svg)
 
 [![Verificação](https://github.com/luigiscofano/usp-mac0321-poo/actions/workflows/verificacao.yml/badge.svg?branch=main)](https://github.com/luigiscofano/usp-mac0321-poo/actions/workflows/verificacao.yml)
 
-Portfólio de **Luigi Scofano de Araujo · Engenharia de Computação, Poli-USP · USP 13680334**. Organização e complementos de 2026, distinguindo acervo recuperado e implementações novas. [Procedência](docs/PROCEDENCIA.md).
+[O que faz](#o-que-este-projeto-faz) · [Módulos](#funcionalidades-e-módulos) · [Executar](#como-executar) · [Aprendizagem](#o-que-desenvolvi-e-aprendi) · [Estado atual](#estado-atual) · [Documentação](#documentação-e-navegação)
 
-## Objetivos pedagógicos em destaque
+## O que este projeto faz
 
-- **Separar responsabilidades** — Agendar Evento em vez de Runnable.
-- **Garantir determinismo** — Desempatar por ordem de inserção.
-- **Aplicar State** — Representar Planejado, Executado e Invalido como tipos.
-- **Controlar dependência temporal** — Consultar Clock injetado.
-- **Preservar dados** — Fazer round-trip CSV de textos complexos.
-- **Distinguir conjunto e multiconjunto** — Comparar frequências.
+Reúne estudos de **Laboratório de Programação Orientada a Objetos — MAC0321**. A aplicação executável simula eventos em um domínio fictício de paciente/médico/droga. Outros módulos oferecem lançamentos com estados temporais, leitura/escrita CSV e um multiconjunto. Um acervo separado preserva a Lista 08 em coautoria com Hugo Spadete.
 
-**[Atividades, evidências e rubrica →](docs/OBJETIVOS_PEDAGOGICOS.md)**
+## Qual problema resolve
 
-## Execute e experimente
+Os problemas são organizar comportamentos que mudam com o tempo, separar responsabilidades e conservar dados sem misturar interface, regras e persistência. Os módulos de simulação, financeiro e coleções **não são partes de um sistema clínico ou bancário integrado**. Compartilham o propósito de estudo e a suíte de testes.
+
+## Funcionalidades e módulos
+
+### 1. Agenda de eventos
+
+`Evento` tem instante imutável e uma ação. `Controlador` usa fila de prioridade e ordem de inserção para tratar empates de forma determinística. Agendar no passado ou voltar o relógio é erro. O módulo é reutilizado na simulação, mas pode ser estudado sozinho. Operações de agenda custam O(log e), com e eventos pendentes.
+
+### 2. Simulação de paciente, médico e droga
+
+A demonstração executa 300 minutos, ordenando surto, consulta e evolução a cada minuto. Paciente guarda o estado; médico decide pelas regras da simulação; droga aplica o efeito definido. O log exibe minuto, temperatura, PAC e medicação. **São regras fictícias de software, sem uso clínico ou validade médica.** Não representam um modelo fisiológico validado.
+
+### 3. Lançamentos e padrão State
+
+Um lançamento possui ID, descrição, valor decimal e data. O estado é calculado com `Clock`: valor negativo gera `Invalido`; data anterior a hoje gera `Executado`; hoje/futuro gera `Planejado`. Executados bloqueiam edição. O relógio explícito permite repetir um teste em qualquer dia, sem persistir um rótulo que fique desatualizado com o calendário.
+
+### 4. Persistência CSV
+
+`LancamentosCsv` conserva `id,descricao,valor,data`, aceita campos com vírgulas, aspas e quebras de linha, rejeita IDs repetidos e exclui inválidos ao salvar. Usa arquivo temporário e tenta substituição atômica, com fallback quando o sistema não oferece suporte. Este módulo é uma biblioteca, sem menu ou aplicativo financeiro completo.
+
+### 5. Multiconjunto e acervo
+
+O módulo novo `Multiconjunto` armazena frequências: adicionar x duas vezes deve ser diferente de adicionar uma. Sua igualdade considera contagens, rejeitando `null`. O [acervo](acervo/README.md) contém 13 fontes da Lista 08, com GUI e testes históricos próprios. Esse acervo não é compilado pela suíte nova; o fatorial e os wrappers mantêm limitações documentadas.
+
+## Como executar
+
+**Requisitos:** JDK 17 ou superior, com `java` e `javac` no PATH; Python 3.12 para o verificador. O JRE sozinho não contém o compilador. Não há dependência de Maven ou Gradle na suíte nova.
+
+```sh
+git clone https://github.com/luigiscofano/usp-mac0321-poo.git
+cd usp-mac0321-poo
+```
+
+Confira o ambiente:
+
+```sh
+java -version
+javac -version
+python --version
+```
+
+
+### Compilar, testar e abrir a demonstração
 
 ```sh
 python scripts/verificar.py
 java -cp build/classes poo.simulacao.Simulador
 ```
 
-Ambiente: **Java 17+ e Python 3.12**. [Instalação detalhada](docs/INSTALACAO.md).
+O primeiro comando compila os módulos novos e executa `PooTest`; a evidência vai para `build/testes.log` e `build/validacao.json`. O segundo imprime o log da simulação. Não abre janelas e não exige conexão com serviços externos.
 
-## Encontre cada parte
+### Experimentar State e CSV
 
-**[Guias por assunto](docs/topicos/README.md) · [Mapa de branches](docs/BRANCHES.md) · [PRs e entregas](docs/PUBLICACAO.md)**
+Depois da compilação, inicie `jshell --class-path build/classes` e cole:
 
-| Diretório | Conteúdo |
+```java
+import poo.financeiro.*;
+import java.time.*;
+import java.math.BigDecimal;
+import java.nio.file.Path;
+import java.util.List;
+var relogio = Clock.fixed(Instant.parse("2026-10-31T12:00:00Z"), ZoneOffset.UTC);
+var item = new Lancamento("demo-1", "Livro, edição especial", new BigDecimal("19.90"), LocalDate.of(2026, 11, 1));
+System.out.println(item.estado(relogio).getClass().getSimpleName());
+LancamentosCsv.salvar(Path.of("build/exemplo.csv"), List.of(item), relogio);
+System.out.println(LancamentosCsv.carregar(Path.of("build/exemplo.csv")).size());
+```
+
+O estado esperado é `Planejado`; a leitura deve retornar um item. A vírgula na descrição deve ser preservada. O diretório `build/` já existe após o verificador. Use `/exit` para sair do JShell. A [fixture CSV](examples/lancamentos.csv) e os testes oferecem outros casos.
+
+### Experimentar multiplicidades
+
+No mesmo JShell:
+
+```java
+import poo.colecoes.Multiconjunto;
+var conjunto = new Multiconjunto<String>();
+conjunto.adicionar("x"); conjunto.adicionar("x");
+System.out.println(conjunto.quantidade("x"));
+```
+
+O resultado deve ser `2`. Para executar a GUI e os testes históricos da Lista 08, siga o [repositório original](https://github.com/luigiscofano/MAC0321-Lista08), com suas dependências próprias.
+
+## O que desenvolvi e aprendi
+
+As implementações e a documentação desta edição relacionam modelagem de domínio, composição, eventos, estados derivados, imutabilidade, precisão decimal, parsing e testes determinísticos. O acervo conserva a coautoria e não é apresentado como código novo de uma única pessoa.
+
+**Objetivos pedagógicos:** explicar a ordem de eventos empatados; testar a mudança de estado após a passagem de um dia; fazer round-trip de CSV com aspas e linhas internas; mostrar por que HashSet não conserva multiplicidade. [Atividades e rubrica](docs/OBJETIVOS_PEDAGOGICOS.md).
+
+## Estado atual
+
+| Disponível | Limite / evolução |
 | --- | --- |
-| [src/](src/README.md) | Código novo organizado por eventos, simulação fictícia, financeiro e coleções. |
-| [src/poo/eventos/](src/poo/eventos/README.md) | Evento abstrato e Controlador com fila temporal estável. |
-| [src/poo/simulacao/](src/poo/simulacao/README.md) | Paciente, Droga, Medico e Simulador de um modelo fictício discreto. |
-| [src/poo/financeiro/](src/poo/financeiro/README.md) | State, Clock, BigDecimal e persistência CSV. |
-| [src/poo/colecoes/](src/poo/colecoes/README.md) | Multiconjunto com igualdade por frequências. |
-| [tests/](tests/README.md) | Testes de eventos, limites, State, serialização e multiplicidade. |
-| [examples/](examples/README.md) | CSV sintético sem dados financeiros reais. |
-| [acervo/](acervo/README.md) | 13 arquivos Java recuperados da Lista08 pública, preservando coautoria. |
-| [docs/](docs/README.md) | Arquitetura, objetivos, reprodução, apresentação e evidência |
+| Agenda estável e demonstração por eventos | O controlador genérico não impede um consumidor de agendar infinitamente no mesmo instante |
+| State com Clock, BigDecimal e CSV | Sem aplicativo financeiro completo, DAOs históricos ou esquema original reconstruído |
+| Multiconjunto por frequências | API pequena, voltada aos exercícios |
+| Suíte nova e CI multiplataforma | GUI e testes históricos têm validação separada |
 
-## Verificação e limites
+## Validação e limites
 
-Testes de ordem estável, eventos passados, limites temporais, efeito de tratamento fictício, determinismo, transições State, bloqueio de edição, CSV com aspas e novas linhas, exclusão de inválidos e multiplicidades.
+`PooTest` exercita os contratos dos módulos novos, incluindo tempo, estados, CSV e coleções. A [validação](docs/VALIDACAO.md) e a [arquitetura](docs/ARQUITETURA.md) detalham os casos e limites. A execução da simulação não oferece orientação médica; salvar um CSV não equivale a um sistema financeiro de produção.
 
-GUI Swing e testes antigos fora da suíte nova; regras da simulação são fictícias; EP1/EP2 completos não autenticados; persistência nova cobre apenas lançamentos.
+## Documentação e navegação
 
-**[Validação →](docs/VALIDACAO.md)** · **[Arquitetura e decisões →](docs/ARQUITETURA.md)**
+| Caminho | Conteúdo |
+| --- | --- |
+| [src/](src/README.md) | Pacotes eventos, simulação, financeiro e coleções |
+| [Guias por assunto](docs/topicos/README.md) | Roteiros de estudo por módulo |
+| [tests/](tests/README.md) / [examples/](examples/README.md) | Testes e fixture CSV |
+| [acervo/](acervo/README.md) | Lista 08 e seus créditos |
+| [docs/](docs/README.md) | Contratos, instalação, pedagogia, apresentação e evidências |
+| [Branches](docs/BRANCHES.md) / [PRs](docs/PUBLICACAO.md) | Entregas organizadas |
 
-Use o [roteiro de apresentação](docs/APRESENTACAO.md) e confira os [PRs reais](docs/PUBLICACAO.md). As branches representam organização atual, sem datas retroativas ou revisões fictícias.
 
-[Contribuir](CONTRIBUTING.md) · [Direitos e créditos](DIREITOS_E_CREDITOS.md) · [Referências](docs/REFERENCIAS.md) · [Mudanças](CHANGELOG.md)
+## Autoria, referências e licença
 
-**CI confirmada:** [testes aprovados](https://github.com/luigiscofano/usp-mac0321-poo/actions/runs/41227685943). Consulte o registro de [validação remota](docs/validacao-remota.json).
+**Luigi Scofano de Araujo · Engenharia de Computação, Poli-USP · USP 13680334.** Fontes recuperados, componentes de terceiros e trabalhos em grupo mantêm os créditos indicados nos arquivos e na documentação.
+
+[Direitos e créditos](DIREITOS_E_CREDITOS.md) · [Procedência](docs/PROCEDENCIA.md) · [Como contribuir](CONTRIBUTING.md) · [Mudanças](CHANGELOG.md)
+
+## Tópicos do repositório
+
+`java` · `object-oriented-programming` · `discrete-event-simulation` · `state-pattern` · `csv` · `collections` · `software-testing` · `usp` · `educational`
