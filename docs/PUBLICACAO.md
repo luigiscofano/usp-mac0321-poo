@@ -2,7 +2,7 @@
 
 Repositório: https://github.com/luigiscofano/usp-mac0321-poo
 
-Organização atual de 31/10/2026, sem datas retroativas ou revisões fictícias.
+Edição organizada em 31/10/2026. As branches registram entregas atuais e permanecem acessíveis após integração.
 
 | PR | Branch | Entrega |
 | --- | --- | --- |
@@ -10,5 +10,11 @@ Organização atual de 31/10/2026, sem datas retroativas ou revisões fictícias
 | [#2](https://github.com/luigiscofano/usp-mac0321-poo/pull/2) | `feat/aplicacoes-e-acervo` | Adicionar State, persistencia CSV e acervo Lista08 |
 | [#3](https://github.com/luigiscofano/usp-mac0321-poo/pull/3) | `test/verificacao-automatica` | Adicionar testes executaveis e GitHub Actions |
 | [#4](https://github.com/luigiscofano/usp-mac0321-poo/pull/4) | `docs/objetivos-e-arquitetura` | Documentar objetivos pedagogicos, arquitetura e procedencia |
+| [#5](https://github.com/luigiscofano/usp-mac0321-poo/pull/5) | `docs/evidencia-da-ci` | Registrar validacao remota e artefatos reproduziveis |
+| [#6](https://github.com/luigiscofano/usp-mac0321-poo/pull/6) | `docs/eventos-e-simulacao` | Guia de eventos e simulação determinística |
+| [#7](https://github.com/luigiscofano/usp-mac0321-poo/pull/7) | `docs/estado-e-persistencia` | Guia de State, tempo e persistência CSV |
+| [#8](https://github.com/luigiscofano/usp-mac0321-poo/pull/8) | `docs/colecoes-e-acervo` | Guia de multiconjuntos e Lista08 recuperada |
 
-Esta entrega acrescenta evidência remota confirmada: [execução aprovada](https://github.com/luigiscofano/usp-mac0321-poo/actions/runs/41227685943). O registro estruturado está em [validacao-remota.json](validacao-remota.json).
+[Mapa de branches](BRANCHES.md) · [Guias por assunto](topicos/README.md) · [Todos os PRs](https://github.com/luigiscofano/usp-mac0321-poo/pulls?q=is%3Apr)
+
+A integração de cada PR pode ser conferida no GitHub. A evidência funcional e o commit correspondente estão em [VALIDACAO.md](VALIDACAO.md).
