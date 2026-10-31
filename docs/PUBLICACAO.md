@@ -13,6 +13,7 @@ Edição organizada em 31/10/2026. As branches registram entregas atuais e perma
 | [#5](https://github.com/luigiscofano/usp-mac0321-poo/pull/5) | `docs/evidencia-da-ci` | Registrar validacao remota e artefatos reproduziveis |
 | [#6](https://github.com/luigiscofano/usp-mac0321-poo/pull/6) | `docs/eventos-e-simulacao` | Guia de eventos e simulação determinística |
 | [#7](https://github.com/luigiscofano/usp-mac0321-poo/pull/7) | `docs/estado-e-persistencia` | Guia de State, tempo e persistência CSV |
+| [#8](https://github.com/luigiscofano/usp-mac0321-poo/pull/8) | `docs/colecoes-e-acervo` | Guia de multiconjuntos e Lista08 recuperada |
 
 [Mapa de branches](BRANCHES.md) · [Guias por assunto](topicos/README.md) · [Todos os PRs](https://github.com/luigiscofano/usp-mac0321-poo/pulls?q=is%3Apr)
 
