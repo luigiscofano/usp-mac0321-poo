@@ -1,0 +1,38 @@
+{
+  "data_usuario": "2026-10-31",
+  "run_id": 41227685943,
+  "run_url": "https://github.com/luigiscofano/usp-mac0321-poo/actions/runs/41227685943",
+  "commit": "b6ee1416a1221a4ad42c91925c998049c13c96db",
+  "conclusao": "success",
+  "jobs": [
+    {
+      "nome": "testes (macos-15)",
+      "conclusao": "success"
+    },
+    {
+      "nome": "testes (windows-latest)",
+      "conclusao": "success"
+    },
+    {
+      "nome": "testes (ubuntu-24.04)",
+      "conclusao": "success"
+    }
+  ],
+  "artefatos": [
+    {
+      "nome": "evidencia-windows-latest",
+      "url": "https://github.com/luigiscofano/usp-mac0321-poo/actions/runs/41227685943/artifacts/13052880294",
+      "expira_em": "2027-01-29T18:05:35Z"
+    },
+    {
+      "nome": "evidencia-macos-15",
+      "url": "https://github.com/luigiscofano/usp-mac0321-poo/actions/runs/41227685943/artifacts/13052760997",
+      "expira_em": "2027-01-29T18:05:35Z"
+    },
+    {
+      "nome": "evidencia-ubuntu-24.04",
+      "url": "https://github.com/luigiscofano/usp-mac0321-poo/actions/runs/41227685943/artifacts/13052192357",
+      "expira_em": "2027-01-29T18:05:35Z"
+    }
+  ]
+}
