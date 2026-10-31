@@ -1,0 +1,6 @@
+{
+  "passou": true,
+  "comando": "python scripts/verificar.py",
+  "saida": "PASS: eventos estaveis, limites temporais, simulacao deterministica, State, CSV e multiplicidades\n",
+  "data_usuario": "2026-10-31"
+}
