@@ -14,9 +14,20 @@ Reúne estudos de **Laboratório de Programação Orientada a Objetos — MAC032
 
 ## Qual problema resolve
 
+<details>
+<summary>Expandir qual problema resolve</summary>
+
 Os problemas são organizar comportamentos que mudam com o tempo, separar responsabilidades e conservar dados sem misturar interface, regras e persistência. Os módulos de simulação, financeiro e coleções **não são partes de um sistema clínico ou bancário integrado**. Compartilham o propósito de estudo e a suíte de testes.
 
+
+</details>
+
+---
+
 ## Funcionalidades e módulos
+
+<details>
+<summary>Expandir funcionalidades e módulos</summary>
 
 ### 1. Agenda de eventos
 
@@ -38,7 +49,15 @@ Um lançamento possui ID, descrição, valor decimal e data. O estado é calcula
 
 O módulo novo `Multiconjunto` armazena frequências: adicionar x duas vezes deve ser diferente de adicionar uma. Sua igualdade considera contagens, rejeitando `null`. O [acervo](acervo/README.md) contém 13 fontes da Lista 08, com GUI e testes históricos próprios. Esse acervo não é compilado pela suíte nova; o fatorial e os wrappers mantêm limitações documentadas.
 
+
+</details>
+
+---
+
 ## Como executar
+
+<details>
+<summary>Expandir como executar</summary>
 
 **Requisitos:** JDK 17 ou superior, com `java` e `javac` no PATH; Python 3.12 para o verificador. O JRE sozinho não contém o compilador. Não há dependência de Maven ou Gradle na suíte nova.
 
@@ -97,13 +116,29 @@ System.out.println(conjunto.quantidade("x"));
 
 O resultado deve ser `2`. Para executar a GUI e os testes históricos da Lista 08, siga o [repositório original](https://github.com/luigiscofano/MAC0321-Lista08), com suas dependências próprias.
 
+
+</details>
+
+---
+
 ## O que desenvolvi e aprendi
+
+<details>
+<summary>Expandir o que desenvolvi e aprendi</summary>
 
 As implementações e a documentação desta edição relacionam modelagem de domínio, composição, eventos, estados derivados, imutabilidade, precisão decimal, parsing e testes determinísticos. O acervo conserva a coautoria e não é apresentado como código novo de uma única pessoa.
 
 **Objetivos pedagógicos:** explicar a ordem de eventos empatados; testar a mudança de estado após a passagem de um dia; fazer round-trip de CSV com aspas e linhas internas; mostrar por que HashSet não conserva multiplicidade. [Atividades e rubrica](docs/OBJETIVOS_PEDAGOGICOS.md).
 
+
+</details>
+
+---
+
 ## Estado atual
+
+<details>
+<summary>Expandir estado atual</summary>
 
 | Disponível | Limite / evolução |
 | --- | --- |
@@ -112,11 +147,27 @@ As implementações e a documentação desta edição relacionam modelagem de do
 | Multiconjunto por frequências | API pequena, voltada aos exercícios |
 | Suíte nova e CI multiplataforma | GUI e testes históricos têm validação separada |
 
+
+</details>
+
+---
+
 ## Validação e limites
+
+<details>
+<summary>Expandir validação e limites</summary>
 
 `PooTest` exercita os contratos dos módulos novos, incluindo tempo, estados, CSV e coleções. A [validação](docs/VALIDACAO.md) e a [arquitetura](docs/ARQUITETURA.md) detalham os casos e limites. A execução da simulação não oferece orientação médica; salvar um CSV não equivale a um sistema financeiro de produção.
 
+
+</details>
+
+---
+
 ## Documentação e navegação
+
+<details>
+<summary>Expandir documentação e navegação</summary>
 
 | Caminho | Conteúdo |
 | --- | --- |
@@ -128,12 +179,33 @@ As implementações e a documentação desta edição relacionam modelagem de do
 | [Branches](docs/BRANCHES.md) / [PRs](docs/PUBLICACAO.md) | Entregas organizadas |
 
 
+
+</details>
+
+---
+
 ## Autoria, referências e licença
+
+<details>
+<summary>Expandir autoria, referências e licença</summary>
 
 **Luigi Scofano de Araujo · Engenharia de Computação, Poli-USP · USP 13680334.** Fontes recuperados, componentes de terceiros e trabalhos em grupo mantêm os créditos indicados nos arquivos e na documentação.
 
 [Direitos e créditos](DIREITOS_E_CREDITOS.md) · [Procedência](docs/PROCEDENCIA.md) · [Como contribuir](CONTRIBUTING.md) · [Mudanças](CHANGELOG.md)
 
+
+</details>
+
+---
+
 ## Tópicos do repositório
 
+<details>
+<summary>Expandir tópicos do repositório</summary>
+
 `java` · `object-oriented-programming` · `discrete-event-simulation` · `state-pattern` · `csv` · `collections` · `software-testing` · `usp` · `educational`
+
+</details>
+
+---
+
